@@ -34,6 +34,4 @@ open streams during a disconnect.
 MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --process-results
 ```
 
-Notice that `Disconnected, THIS IS NEVER SHOWN` was printed to the console. The
-only difference here is that the results stream for the query was fully
-processed by our code.
+Notice that `Disconnected, THIS IS NEVER SHOWN` was printed to the console.
