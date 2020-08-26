@@ -31,7 +31,7 @@ open streams during a disconnect.
 ## Expected Behaviour
 
 ```sh
-MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --process-stream
+MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --process-results
 ```
 
 Notice that `Disconnected, THIS IS NEVER SHOWN` was printed to the console. The
