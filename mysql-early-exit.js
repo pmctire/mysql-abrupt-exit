@@ -1,6 +1,9 @@
 const { promisify } = require('util');
-const mysql = require('mysql');
 const yargs = require('yargs');
+
+// This problem exists in both the mysql and mysql2 packages
+// const mysql = require('mysql2');
+const mysql = require('mysql');
 
 const args = yargs
   .option('process-results', {

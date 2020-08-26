@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
     "yargs": "^15.4.1"
   }
 }
