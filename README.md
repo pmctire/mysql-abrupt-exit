@@ -20,7 +20,7 @@ Demo of the early exit when calling `connection.end()` with a running query.
 ## Problem behavior
 
 ```sh
-MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --no-process-stream
+MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --no-process-results
 ```
 
 Notice you never see `Disconnected, THIS IS NEVER SHOWN` printed to the console.
