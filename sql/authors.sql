@@ -2,6 +2,10 @@
 # TABLE STRUCTURE FOR: authors
 #
 
+CREATE DATABASE IF NOT EXISTS authors_db;
+
+USE authors_db;
+
 DROP TABLE IF EXISTS `authors`;
 
 CREATE TABLE `authors` (

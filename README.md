@@ -10,36 +10,28 @@ Demo of the early exit when calling `connection.end()` with a running query.
     yarn
     ```
 
-1. Copy `.env.example` to `.env` and fill in the missing variables.
-   (instructions inside)
+1. Start & setup database with docker-compose
 
     ```sh
-    cp .env.example .env
+    docker-compose up -d
+    docker-compose exec mysql sh -c 'exec mysql -uroot -p"supersecret" < /sql/authors.sql'
     ```
 
-## Running
+## Problem behavior
 
-1. Have a MySQL server available
-1. Create an empty database
-1. Run the script that's available in the `sql` folder, it'll create a table
-   called `authors` with dummy data
+```sh
+MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --no-process-results
+```
 
-1. Run the `early-exit` command
+Notice you never see `Disconnected, THIS IS NEVER SHOWN` printed to the console.
+The last line of the code prints this message. Somehow it's skipped. It seems
+like something is calling `exit(0)` behind the scenes when there are leftover
+open streams during a disconnect.
 
-    ```sh
-    yarn start early-exit -h {your-mysql-host} -u {your-mysql-user}
-    ```
+## Expected Behaviour
 
-    Replace:
+```sh
+MYSQL_PASSWORD=supersecret node ./mysql-early-exit.js --process-results
+```
 
-    * `{your-mysql-host}` with what your MySQL server hostname (e.g. `localhost`)
-    * `{your-mysql-user}` with whatever is your MySQL user
-
-1. Read the output, notice you never see `Disconnected, THIS IS NEVER SHOWN`
-   outputted
-
-1. Go in `lib/commands/early-exit.js` and uncomment `await
-   iter.collect(iter.fromStream(query));` (line 58)
-
-1. Repeat the previous steps and see the `Disconnected, THIS IS NEVER SHOWN`
-   outputted
+Notice that `Disconnected, THIS IS NEVER SHOWN` was printed to the console.
