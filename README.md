@@ -10,11 +10,11 @@ Demo of the early exit when calling `connection.end()` with a running query.
     yarn
     ```
 
-1. Copy `.env.example` to `.env` and fill in the missing variables.
-   (instructions inside)
+1. Start & setup database with docker-compose
 
     ```sh
-    cp .env.example .env
+    docker-compose up -d
+    docker-compose exec mysql sh -c 'exec mysql -uroot -p"supersecret" < /sql/authors.sql'
     ```
 
 ## Running
